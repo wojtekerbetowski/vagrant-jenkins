@@ -1,10 +1,12 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 ######
 # Java
 ######
 
-sudo apt -y install default-jdk
+sudo apt-get -y install default-jdk
 
 ########################
 # Jenkins
@@ -38,7 +40,7 @@ echo "Success"
 # Python
 ########
 
-sudo apt install -y python3-dev python3-pip
+sudo apt-get install -y python3-dev python3-pip
 
 cat <<EOT >> selftest.py
 import pip
