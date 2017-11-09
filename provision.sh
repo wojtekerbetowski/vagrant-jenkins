@@ -42,6 +42,16 @@ echo "Success"
 
 sudo apt-get install -y python3-dev python3-pip
 
+sudo pip3 install --upgrade pip
+
+sudo pip install virtualenv
+
+mkdir selftest
+cd selftest
+
+virtualenv venv
+source venv/bin/activate
+
 cat <<EOT >> selftest.py
 import pip
 import sys
@@ -57,5 +67,5 @@ print('Running in Python {}'.format(version))
 pip.main(['install', '-I',  'requests'])
 EOT
 
-sudo python3 selftest.py
+python selftest.py
 
