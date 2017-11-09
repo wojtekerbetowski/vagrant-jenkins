@@ -1,5 +1,11 @@
 #!/bin/bash
 
+######
+# Java
+######
+
+sudo apt -y install default-jdk
+
 ########################
 # Jenkins
 ########################
@@ -27,3 +33,27 @@ sudo ln -s /etc/nginx/sites-available/jenkins /etc/nginx/sites-enabled/
 sudo service nginx restart
 sudo service jenkins restart
 echo "Success"
+
+########
+# Python
+########
+
+sudo apt install -y python3-dev python3-pip
+
+cat <<EOT >> selftest.py
+import pip
+import sys
+
+major, minor = sys.version_info[0:2]
+
+assert (major, minor) >= (3, 5), "Required python version min 3.5"
+version = '{}.{}'.format(major, minor)
+
+
+print('Running in Python {}'.format(version))
+
+pip.main(['install', '-I',  'requests'])
+EOT
+
+sudo python3 selftest.py
+
